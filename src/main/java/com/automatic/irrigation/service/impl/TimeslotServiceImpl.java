@@ -1,5 +1,6 @@
 package com.automatic.irrigation.service.impl;
 
+import com.automatic.irrigation.constants.Status;
 import com.automatic.irrigation.dto.TimeslotDTO;
 import com.automatic.irrigation.model.Plot;
 import com.automatic.irrigation.model.Timeslot;
@@ -49,6 +50,17 @@ public class TimeslotServiceImpl implements TimeslotService {
     }
 
     @Override
+    public TimeslotDTO getSlot(String id) {
+        Optional<Timeslot> optionalSlot = timeslotRepository.findById(id);
+        if (optionalSlot.isPresent()) {
+            return convertToDTO(optionalSlot.get());
+        } else {
+            log.error("No timeslot is found with the id: {}", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No timeslot is found with the id: " + id);
+        }
+    }
+
+    @Override
     public TimeslotDTO updateSlot(String id, TimeslotDTO timeslotDTO) {
         Optional<Timeslot> optionalSlot = timeslotRepository.findById(id);
         if (optionalSlot.isPresent()) {
@@ -67,13 +79,16 @@ public class TimeslotServiceImpl implements TimeslotService {
     }
 
     @Override
-    public TimeslotDTO getSlot(String id) {
+    public TimeslotDTO updateStatus(String id, Status status) {
         Optional<Timeslot> optionalSlot = timeslotRepository.findById(id);
-        if (optionalSlot.isPresent()) {
-            return convertToDTO(optionalSlot.get());
+        if(optionalSlot.isPresent()){
+            Timeslot timeslot = optionalSlot.get();
+            timeslot.setStatus(status);
+            timeslotRepository.save(timeslot);
+            return convertToDTO(timeslot);
         } else {
-            log.error("No timeslot is found with the id: {}", id);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No timeslot is found with the id: " + id);
+            log.error("No slot is found with the id: {}", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No slot is found with the id: " + id);
         }
     }
 

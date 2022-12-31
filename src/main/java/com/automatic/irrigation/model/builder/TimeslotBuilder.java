@@ -1,5 +1,6 @@
 package com.automatic.irrigation.model.builder;
 
+import com.automatic.irrigation.constants.Status;
 import com.automatic.irrigation.model.Plot;
 import com.automatic.irrigation.model.Timeslot;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,8 @@ public class TimeslotBuilder {
     private Instant startTime;
 
     private Instant endTime;
+
+    private Status status;
 
     private Plot plot;
 
@@ -46,6 +49,11 @@ public class TimeslotBuilder {
         return this;
     }
 
+    public TimeslotBuilder setStatus(Status status) {
+        this.status = status;
+        return this;
+    }
+
     public TimeslotBuilder setPlot(Plot plot) {
         this.plot = plot;
         return this;
@@ -58,6 +66,7 @@ public class TimeslotBuilder {
         slot.setAmountOfWater(waterRequired);
         slot.setStartTime(startTime);
         slot.setEndTime(endTime);
+        slot.setStatus(status);
         slot.setPlot(plot);
         return slot;
     }

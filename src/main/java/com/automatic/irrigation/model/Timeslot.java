@@ -1,5 +1,6 @@
 package com.automatic.irrigation.model;
 
+import com.automatic.irrigation.constants.Status;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,10 @@ public class Timeslot {
     @Column(name = "end_time")
     private Instant endTime;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status = Status.CONFIGURED;
+
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "plot_id")
@@ -44,11 +49,11 @@ public class Timeslot {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Timeslot slot = (Timeslot) o;
-        return Objects.equals(id, slot.id) && Objects.equals(name, slot.name) && Objects.equals(amountOfWater, slot.amountOfWater) && Objects.equals(startTime, slot.startTime) && Objects.equals(endTime, slot.endTime);
+        return Objects.equals(id, slot.id) && Objects.equals(name, slot.name) && Objects.equals(amountOfWater, slot.amountOfWater) && Objects.equals(startTime, slot.startTime) && Objects.equals(endTime, slot.endTime) && status == slot.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, amountOfWater, startTime, endTime);
+        return Objects.hash(id, name, amountOfWater, startTime, endTime, status);
     }
 }
