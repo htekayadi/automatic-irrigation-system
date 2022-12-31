@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name= "plots")
+@Table(name = "plots")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,8 +27,12 @@ public class Plot {
     @OneToMany(mappedBy = "plot", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Timeslot> timeslots = new LinkedHashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sensor_id", referencedColumnName = "id")
+    private Sensor sensor;
+
     @PreRemove
-    public void clearSlotsOnDelete(){
+    public void clearSlotsOnDelete() {
         this.timeslots.clear();
     }
 }

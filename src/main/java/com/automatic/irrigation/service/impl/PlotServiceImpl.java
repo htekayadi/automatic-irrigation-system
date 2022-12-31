@@ -4,7 +4,7 @@ import com.automatic.irrigation.dto.PlotDTO;
 import com.automatic.irrigation.model.Plot;
 import com.automatic.irrigation.model.builder.PlotBuilder;
 import com.automatic.irrigation.repository.PlotRepository;
-import com.automatic.irrigation.service.api.PlotService;
+import com.automatic.irrigation.service.PlotService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 public class PlotServiceImpl implements PlotService {
-    
-    @Autowired 
+
+    @Autowired
     private PlotRepository plotRepository;
-    @Autowired 
+    @Autowired
     private PlotBuilder plotBuilder;
-    @Autowired 
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
@@ -41,7 +41,7 @@ public class PlotServiceImpl implements PlotService {
                 .setName(plotDTO.getName())
                 .build();
         plotRepository.save(plot);
-        
+
         return convertToDTO(plot);
     }
 
@@ -50,7 +50,7 @@ public class PlotServiceImpl implements PlotService {
         Optional<Plot> optionalPlot = plotRepository.findById(id);
         Plot plot;
 
-        if(optionalPlot.isPresent()){
+        if (optionalPlot.isPresent()) {
             plot = optionalPlot.get();
             plot.setName(plotDTO.getName());
             plotRepository.save(plot);
@@ -64,7 +64,7 @@ public class PlotServiceImpl implements PlotService {
     @Override
     public PlotDTO getPlot(String id) {
         Optional<Plot> optionalPlot = plotRepository.findById(id);
-        if (optionalPlot.isPresent()){
+        if (optionalPlot.isPresent()) {
             return convertToDTO(optionalPlot.get());
         } else {
             log.error("No plot is found with the id: {}", id);
@@ -72,7 +72,7 @@ public class PlotServiceImpl implements PlotService {
         }
     }
 
-    private PlotDTO convertToDTO(Plot plot){
+    private PlotDTO convertToDTO(Plot plot) {
         PlotDTO plotDTO = modelMapper.map(plot, PlotDTO.class);
         return plotDTO;
     }

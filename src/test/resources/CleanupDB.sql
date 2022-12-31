@@ -1,2 +1,8 @@
-delete from timeslots;
-delete from plots;
+DELETE
+FROM timeslots;
+
+DELETE
+FROM plots;
+
+DELETE
+FROM sensors;

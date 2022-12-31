@@ -51,7 +51,7 @@ public class TimeslotBuilder {
         return this;
     }
 
-    public Timeslot build(){
+    public Timeslot build() {
         Timeslot slot = new Timeslot();
         slot.setId(id);
         slot.setName(name);

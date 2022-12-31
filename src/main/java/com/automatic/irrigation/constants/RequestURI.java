@@ -6,5 +6,6 @@ public class RequestURI {
     public static final String V1 = "/v1";
 
     public static final String PLOTS = "/plots";
+    public static final String SENSORS = "/sensors";
     public static final String TIMESLOTS = "/timeslots";
 }

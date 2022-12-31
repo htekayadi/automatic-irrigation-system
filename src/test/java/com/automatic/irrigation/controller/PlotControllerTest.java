@@ -50,7 +50,6 @@ public class PlotControllerTest {
                 .getRestTemplate()
                 .setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         plotApiUrl = "http://localhost:" + port + RequestURI.API + RequestURI.V1 + RequestURI.PLOTS;
-
     }
 
     @Test
@@ -81,12 +80,12 @@ public class PlotControllerTest {
     }
 
     @Test
-    public void updatePlot(){
+    public void updatePlot() {
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
 
         // Add a Plot
         PlotDTO plotDTO = createPlotDTO("Plot 01");
-        ResponseEntity<Object> result = restTemplate.postForEntity(plotApiUrl,plotDTO, Object.class);
+        ResponseEntity<Object> result = restTemplate.postForEntity(plotApiUrl, plotDTO, Object.class);
         Assertions.assertEquals(HttpStatus.CREATED, result.getStatusCode());
 
         PlotDTO plotCreated = modelMapper.map(result.getBody(), PlotDTO.class);

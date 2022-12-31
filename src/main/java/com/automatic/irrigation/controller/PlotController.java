@@ -3,7 +3,7 @@ package com.automatic.irrigation.controller;
 import com.automatic.irrigation.constants.ErrorMessage;
 import com.automatic.irrigation.constants.RequestURI;
 import com.automatic.irrigation.dto.PlotDTO;
-import com.automatic.irrigation.service.api.PlotService;
+import com.automatic.irrigation.service.PlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -6,7 +6,7 @@ import com.automatic.irrigation.model.Timeslot;
 import com.automatic.irrigation.model.builder.TimeslotBuilder;
 import com.automatic.irrigation.repository.PlotRepository;
 import com.automatic.irrigation.repository.TimeslotRepository;
-import com.automatic.irrigation.service.api.TimeslotService;
+import com.automatic.irrigation.service.TimeslotService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

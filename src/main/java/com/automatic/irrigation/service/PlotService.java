@@ -1,4 +1,4 @@
-package com.automatic.irrigation.service.api;
+package com.automatic.irrigation.service;
 
 import com.automatic.irrigation.dto.PlotDTO;
 
