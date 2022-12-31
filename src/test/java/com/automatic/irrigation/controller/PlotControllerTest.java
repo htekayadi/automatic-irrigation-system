@@ -73,6 +73,14 @@ public class PlotControllerTest {
     }
 
     @Test
+    public void getPlotNotFound() {
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
+
+        ResponseEntity<Object> response = restTemplate.getForEntity(plotApiUrl + "/" + "0dd4e592-cae3-481e-aa80-059dddf0590d", Object.class);
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
     public void updatePlot(){
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest()));
 

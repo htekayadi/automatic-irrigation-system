@@ -1,6 +1,6 @@
-package com.automatic.irrigation.utils;
+package com.automatic.irrigation.constants;
 
-public enum Constants {
+public enum ErrorMessage {
 
     NOT_FOUND("not found"),
     UPDATE_FAILED("update failed"),
@@ -8,7 +8,7 @@ public enum Constants {
 
     private final String value;
 
-    Constants(String value){
+    ErrorMessage(String value){
         this.value = value;
     }
 
