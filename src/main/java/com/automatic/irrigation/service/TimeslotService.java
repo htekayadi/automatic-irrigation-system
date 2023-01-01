@@ -1,7 +1,6 @@
 package com.automatic.irrigation.service;
 
 import com.automatic.irrigation.constants.Status;
-import com.automatic.irrigation.dto.SensorDTO;
 import com.automatic.irrigation.dto.TimeslotDTO;
 
 import java.util.List;

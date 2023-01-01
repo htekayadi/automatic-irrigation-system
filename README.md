@@ -5,3 +5,14 @@ to be designed to fulfil the requirement of maintaining and configuring the plot
 and the amount of water required for each irrigation period. The irrigation system should have integration interface
 with a sensor device to direct letting the sensor to irrigate based on the configured time slots/amount of water.
 
+## Build
+
+```
+mvn clean install
+```
+
+## Run unit tests
+
+```
+mvn test
+```

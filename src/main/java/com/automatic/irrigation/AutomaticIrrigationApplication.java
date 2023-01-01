@@ -12,9 +12,5 @@ public class AutomaticIrrigationApplication {
         SpringApplication.run(AutomaticIrrigationApplication.class, args);
     }
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 }
 
