@@ -2,6 +2,7 @@ package com.automatic.irrigation.service.impl;
 
 import com.automatic.irrigation.dto.PlotDTO;
 import com.automatic.irrigation.model.Plot;
+import com.automatic.irrigation.model.Timeslot;
 import com.automatic.irrigation.model.builder.PlotBuilder;
 import com.automatic.irrigation.repository.PlotRepository;
 import com.automatic.irrigation.service.PlotService;
@@ -14,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -74,6 +76,12 @@ public class PlotServiceImpl implements PlotService {
 
     private PlotDTO convertToDTO(Plot plot) {
         PlotDTO plotDTO = modelMapper.map(plot, PlotDTO.class);
+        plotDTO.setSensorId(plot.getSensor() != null ? plot.getSensor().getId() : null);
+        Set<Timeslot> timeslots = plot.getTimeslots();
+        if (timeslots != null) {
+            Set<String> slotIds = timeslots.stream().map(Timeslot::getId).collect(Collectors.toSet());
+            plotDTO.setTimeslotIds(slotIds);
+        }
         return plotDTO;
     }
 }

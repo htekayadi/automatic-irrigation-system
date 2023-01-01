@@ -68,13 +68,13 @@ public class TimeslotControllerTest {
         TimeslotDTO timeslotDTO = createTimeslotDTO();
         timeslotDTO.setPlotId("6b98eb88-b05b-4ff5-8f77-ec8f0a4e4d70");
 
-        // Add a Slot
+        // Add a Timeslot
         ResponseEntity<Object> result = restTemplate.postForEntity(timeslotApiUrl, timeslotDTO, Object.class);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
 
         TimeslotDTO timeslot = modelMapper.map(result.getBody(), TimeslotDTO.class);
 
-        // Get Slot by Id
+        // Get Timeslot by ID
         ResponseEntity<Object> response = restTemplate.getForEntity(timeslotApiUrl + "/" + timeslot.getId(), Object.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
@@ -100,13 +100,13 @@ public class TimeslotControllerTest {
         timeslotDTO.setPlotId("6b98eb88-b05b-4ff5-8f77-ec8f0a4e4d70");
         timeslotDTO.setAmountOfWater(10L);
 
-        // Add a Slot
+        // Add a Timeslot
         ResponseEntity<Object> result = restTemplate.postForEntity(timeslotApiUrl, timeslotDTO, Object.class);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
 
         TimeslotDTO timeslot = modelMapper.map(result.getBody(), TimeslotDTO.class);
 
-        // Update slot
+        // Update Timeslot
         timeslot.setAmountOfWater(20L);
         HttpEntity<TimeslotDTO> requestEntity = new HttpEntity<>(timeslot);
         ResponseEntity<TimeslotDTO> updateResponse = restTemplate.exchange(
@@ -119,7 +119,7 @@ public class TimeslotControllerTest {
         assertEquals(HttpStatus.OK, updateResponse.getStatusCode());
         assertEquals(timeslot.getName(), Objects.requireNonNull(updateResponse.getBody()).getName());
 
-        // Get Slot by Id
+        // Get Timeslot by ID
         ResponseEntity<Object> response = restTemplate.getForEntity(timeslotApiUrl + "/" + timeslot.getId(), Object.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
@@ -136,12 +136,12 @@ public class TimeslotControllerTest {
         TimeslotDTO timeslotDTO = createTimeslotDTO();
         timeslotDTO.setPlotId("6b98eb88-b05b-4ff5-8f77-ec8f0a4e4d70");
 
-        // Add a Slot
-        timeslotDTO.setName("Slot 01");
+        // Add a Timeslot
+        timeslotDTO.setName("Timesot 01");
         ResponseEntity<Object> result = restTemplate.postForEntity(timeslotApiUrl, timeslotDTO, Object.class);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
 
-        // Add a Slot
+        // Add a Timeslot
         timeslotDTO.setName("Slot 02");
         result = restTemplate.postForEntity(timeslotApiUrl, timeslotDTO, Object.class);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
@@ -162,7 +162,7 @@ public class TimeslotControllerTest {
 
     private TimeslotDTO createTimeslotDTO() {
         TimeslotDTO slotDTO = new TimeslotDTO();
-        slotDTO.setName("Slot 01");
+        slotDTO.setName("Timeslot 01");
         slotDTO.setAmountOfWater(10L);
         slotDTO.setStartTime(Instant.now());
         slotDTO.setEndTime(Instant.now().plus(1, ChronoUnit.HOURS));

@@ -14,7 +14,7 @@ public class TimeslotBuilder {
 
     private String name;
 
-    private Long waterRequired;
+    private Long amountOfWater;
 
     private Instant startTime;
 
@@ -34,8 +34,8 @@ public class TimeslotBuilder {
         return this;
     }
 
-    public TimeslotBuilder setWaterRequired(Long waterRequired) {
-        this.waterRequired = waterRequired;
+    public TimeslotBuilder setAmountOfWater(Long amountOfWater) {
+        this.amountOfWater = amountOfWater;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class TimeslotBuilder {
         Timeslot slot = new Timeslot();
         slot.setId(id);
         slot.setName(name);
-        slot.setAmountOfWater(waterRequired);
+        slot.setAmountOfWater(amountOfWater);
         slot.setStartTime(startTime);
         slot.setEndTime(endTime);
         slot.setStatus(status);

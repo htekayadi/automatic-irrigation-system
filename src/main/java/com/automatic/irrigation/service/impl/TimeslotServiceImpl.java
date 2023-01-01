@@ -39,9 +39,10 @@ public class TimeslotServiceImpl implements TimeslotService {
         Timeslot timeslot = timeslotBuilder
                 .setId(UUID.randomUUID().toString())
                 .setName(timeslotDTO.getName())
-                .setWaterRequired(timeslotDTO.getAmountOfWater())
+                .setAmountOfWater(timeslotDTO.getAmountOfWater())
                 .setStartTime(timeslotDTO.getStartTime())
                 .setEndTime(timeslotDTO.getEndTime())
+                .setStatus(Status.CONFIGURED)
                 .setPlot(getPlot(timeslotDTO.getPlotId()))
                 .build();
         timeslotRepository.save(timeslot);
